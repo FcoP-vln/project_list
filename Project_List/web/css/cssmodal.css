@@ -1,0 +1,179 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 09-jun-2020, 11:53:25
+    Author     : Francisco
+*/
+
+
+
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+
+#n_proyecto{
+    width: 465px;
+    height:30px; 
+    color:#f1f1f1;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 5px;
+}
+
+
+#r_proyecto{
+    width: 400px;
+    height:30px; 
+    color:#f1f1f1;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 5px;
+}
+
+#r_proyecto1{
+    width: 400px;
+    height:30px; 
+    color:#f1f1f1;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 5px;
+}
+
+#r_proyecto2, #r_proyecto3, #id_passN{
+    width: 400px;
+    height:30px; 
+    color:#f1f1f1;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 5px;
+}
+#dept, #lat, #long{
+    width: 100px;
+    height:30px; 
+    color:#f1f1f1;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 5px;
+}
+#n_proyectoG{
+    width: 465px;
+    height:30px; 
+    color:#f1f1f1;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 5px;
+}
+
+#n_tarea{
+    width: 465px;
+    height:30px; 
+    color:#f1f1f1;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 5px;
+}
+
+#n_programar{
+    width: 150px;
+    height:30px; 
+    color:#f1f1f1;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 5px;
+}
+#n_Gtarea{
+    width: 465px;
+    height:30px; 
+    color:#f1f1f1;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 5px;
+}
+
+#n_Gprogramar{
+    width: 150px;
+    height:30px; 
+    color:#f1f1f1;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 5px;
+}
+
+
+
+#n_seccion{
+     width: 465px;
+    height:30px; 
+    color:#f1f1f1;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 5px;      
+}
+.modal-header{
+    background-color: #383d41;
+}
+#color_proyecto{
+    width: 20px;
+    border-radius: 10px;
+    background-color: #343a40;  
+}
+
+chk_favorito{
+    background-color: rgba(0,0,0,.3); 
+}
+.color_T {
+    width: 130px;    
+}
+
+#btn_cancel:hover{
+    
+    color: #f1f1f1;
+    background-color: #818181;
+}
+
+#btn_modificarP{
+    background-color: #0069d9 ;
+    border-color: #000;
+}
+#btn_modificarR{
+    background-color: #0069d9 ;
+    border-color: #000;
+}
+#btn_xmlR{
+    background-color: #0069d9 ;
+    border-color: #000;
+}
+
+#btn_modificarT1{
+    background-color: #0069d9 ;
+    border-color: #000;
+}
+#btn_modificarS{
+    background-color: #0069d9 ;
+    border-color: #000;
+}
+
+#btn_modificarP:hover{
+    background-color: #0069d9; 
+        opacity: 0.7;
+    border-color: #000;
+}
+
+#btn_modificarT1:hover{
+    background-color: #0069d9; 
+        opacity: 0.7;
+    border-color: #000;
+}
+
+#btn_modificarS:hover{
+    background-color: #0069d9; 
+        opacity: 0.7;
+    border-color: #000;
+}
+
+
+.modal-body, .modal-footer {
+    color: #818181;
+    background-color: #333;
+    
+}
+.modal-content{
+    margin: auto;
+    
+}
+

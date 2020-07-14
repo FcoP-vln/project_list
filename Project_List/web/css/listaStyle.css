@@ -1,0 +1,199 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 05-jun-2020, 19:11:19
+    Author     : Francisco
+*/
+#menu * { list-style:none;
+color: #818181}
+#menu2 * { list-style:none;
+color: #818181}
+#menuProyecto * { list-style:none;
+color: #818181}
+#menuSecc * { list-style:none;
+color: #818181}
+
+#menu li{ line-height:180%; padding-left: 10px; padding-top: 10px; padding-right: 8px;}
+#menu2 li{ line-height:180%; padding-left: 10px; padding-top: 10px; padding-right: 8px;}
+#menuProyecto li{ line-height:150%; padding-left: 25px; padding-top: 10px; padding-right: 18px;}
+#menusecc li{ line-height:180%; padding-left: 25px; padding-top: 10px; padding-right: 8px;}
+
+.interior { line-height:180%; padding-left: 10px; padding-top: 10px; padding-right: 8px;}
+
+/*---------NUEVO REVISAAAAAAR---------AQUUUUIIIII-------------------------------*/
+#btnGestion { background-color: transparent; border: none; float:right; display: hidden;}
+#btnGestion:active { color:#f1f1f1; align-content: center; background-color: #818181; border: none; font-size: 18px;}
+#btnGestion:hover {color:#f1f1f1; background-color: transparent; border: none; font-size: 18px; display: block;}
+
+#btnGestionS { background-color: transparent; border: none; font-size: 18px;}
+#btnGestionS:active { color:#f1f1f1; align-content: center; background-color: #818181; border: none; font-size: 18px;}
+#btnGestionS:hover {color:#f1f1f1; background-color: transparent; font-size: 22px; border: none;}
+
+#btnGestionP {background-color: transparent; border: none; float:right; display: hidden;}
+#btnGestionP:active { color:#f1f1f1; align-content: center; background-color: #818181; border: none; font-size: 18px;}
+#btnGestionP:hover {color:#f1f1f1; background-color: transparent; font-size: 18px; border: none;}
+
+#menuProyecto li a:before{content: ""; float:left;}
+#menuProyecto li a:active:before{content: "\02714"; float:left;}
+#menuProyecto li a:hover:before{content: "\02714"; float:left;}
+
+/*----------------------------------------------*/
+#menu li a{color:#818181; text-decoration:none;}
+#menu2 li a{color:#818181; text-decoration:none;}
+#menuProyecto li a{color:#818181; text-decoration:none;}
+#menuSecc li a{color:#818181; text-decoration:none;}
+
+#menu li a:before{ content:""; color:#007bff; margin-right:4px;}/*0270d*/
+/*#menu2 li a:before{ content:"\02714"; color:#fe1a04; margin-right:4px;}*/
+/*#menuProyecto li a:before{ content:"\02714"; color:#fe1a04; margin-right:4px;}*/
+
+
+#menu input[name="list"] {
+	position: absolute;
+	left: -1000em;
+	}
+#menu2 input[name="list2"] {
+	position: absolute;
+	left: -1000em;
+	}
+#menuProyecto input[name="list3"] {
+	position: absolute;
+	left: -1000em;
+	}
+#menuSecc input[name="listS"] {
+	position: absolute;
+	left: -1000em;
+	}        
+    
+#menu label:before{ content:"\025b8"; margin-right:4px;}
+#menu2 label:before{ content:"\025be"; margin-right:4px;}
+
+
+#menu input:checked ~ label:before{ content:"\025be";}
+#menu2 input:checked ~ label:before{ content:"\025b8";}
+
+
+#menu .interior{display: none;}
+/*#menu2 .interior{display: none;}*/
+#menuProyecto .interior{display: block;}
+#menuSecc .interior{display: block;}
+
+#menu input:checked ~ ul{display:block;}
+#menu2 input:checked ~ ul{display:none;}
+#menuProyecto input:checked ~ ul{display:none;}
+#menuSecc input:checked ~ ul{display:none;}
+
+
+
+#menu2 .btn {
+    color: #fe1a04;
+    margin-left: 75px;
+    font-size: 20px;
+    
+}
+#menu2 .btn:hover {
+    color: #f1f1f1;
+    margin-left: 75px;
+    font-size: 22px;
+    
+}
+#menu2 a:active, #menu a:active{
+    background-color: #f1f1f1;
+}
+
+#menuProyecto .btn {
+    color: #fe1a04;
+    margin-left: 75px;
+    font-size: 20px;
+    
+}
+#menuProyecto .btn:hover {
+    color: #f1f1f1;
+    margin-left: 75px;
+    font-size: 22px;
+    
+}
+#menuProyecto a:active, #menu a:active{
+    background-color: #f1f1f1;
+}
+
+#menuSecc .btn:hover {
+    color: #f1f1f1;
+    margin-left: 75px;
+    font-size: 22px;
+    
+}
+#menuSecc a:active, #menu a:active{
+    background-color: #f1f1f1;
+}
+
+
+
+
+#1menu * { list-style:none;}
+#1menu li{ line-height:180%;}
+#1menu li a{color:#222; text-decoration:none;}
+#1menu li a:before{ content:"\025b8"; color:#ddd; margin-right:4px;}
+#1menu input[name="1list"] {
+	position: absolute;
+	left: -1000em;
+	}
+#1menu label:before{ content:"\025b8"; margin-right:4px;}
+#1menu input:checked ~ label:before{ content:"\025be";}
+#1menu .interior{display: none;}
+#1menu input:checked ~ ul{display:block;}
+
+
+
+
+
+
+
+
+
+
+.column_side {
+  height: 100%;
+  width: 262px;
+  margin-top: 53px;
+  border-radius: 4px;
+  position: fixed;
+ z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.5);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 20px;
+}
+
+.column_side a {
+  padding: 8px 8px 8px 15px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.column_side a:hover {
+  color: #f1f1f1;
+   background-color:#333;
+   border-radius: 8px;
+   margin: 3px;
+}
+.column_side a:focus {
+  color: #f1f1f1;
+   background-color:#333;
+   border-radius: 8px;
+   margin: 3px;
+}
+
+
+@media screen and (max-height: 450px) {
+  .column_side {padding-top: 15px;}
+  column_side a {font-size: 12px;}
+}
