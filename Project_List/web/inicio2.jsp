@@ -30,7 +30,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Project List</title>
         <script src="js/mainP.js"></script>
-
+        <script type="text/javascript" src="TREE/dtree.js"></script>	
     </head>
     <body>
 
@@ -130,6 +130,79 @@
 
                 </ul>  
             </div>
+
+
+            <table>
+                <tbody>
+                    <tr>
+                        <td style="width: 20%;">
+                            <br>
+                            <div class="dtree">
+                                <p><a href="javascript: d.openAll();">Desplegar Todos</a> | <a href="javascript: d.closeAll();">Cerrar Todos</a></p>
+                                <script type="text/javascript">
+                                    d = new dTree('d');
+                                    d.add(0, -1, 'Proyectos');
+
+
+                                    <%
+                                        Dba dbT = new Dba();
+                                        dbT.Conectar();
+                                        dbT.query.execute("SELECT tblproyecto.IDPROYECTO, tblproyecto.NOMBREPRO FROM TBLPROYECTO where tblproyecto.IDUSER = '" + session.getAttribute("id_user") + "' ");
+                                        ResultSet rs1 = dbT.query.getResultSet();
+                                        while (rs1.next()) {
+                                    %>
+                                    d.add(<%=rs1.getString(1)%>, 0, '<%=rs1.getString(2)%>', '', 'PROYECTO');
+
+                                    <% }
+                                        dbT.desconectar();
+                                    %>
+
+
+                                    <%
+                                        Dba db2 = new Dba();
+                                        db2.Conectar();
+                                        db2.query.execute("SELECT s.idseccion+100, a.idproyecto,  s.nombre, a.nombrepro, s.idseccion FROM tblproyecto a, tblseccion s where a.idproyecto=s.idproyecto");
+                                        ResultSet rs2 = db2.query.getResultSet();
+                                        while (rs2.next()) {
+                                    %>
+
+                                    d.add(<%=rs2.getString(1)%>,<%=rs2.getString(2)%>, '<%=rs2.getString(3)%>', 'inicio2.jsp?secciones=<%=rs2.getString(3)%>&p_proyecto=<%=rs2.getString(4)%>&idSecc=<%=rs2.getString(5)%>', 'Es una Sección', '', 'img/folder2.gif', 'img/folder_open2.gif');
+
+                                    <% }
+                                        db2.desconectar();
+                                    %>
+
+                                    <%
+                                        Dba db3 = new Dba();
+                                        db3.Conectar();
+                                        db3.query.execute("select distinct t.idtarea, s.idseccion+100, t.nomtarea, s.idseccion, t.idtarea from tbltarea t, tblseccion s, tblproyecto a where t.idseccion=s.idseccion");
+                                        ResultSet rs3 = db3.query.getResultSet();
+                                        while (rs3.next()) {
+                                    %>
+
+                                    d.add(<%=rs3.getString(1)%>, <%=rs3.getString(2)%>, '<%=rs3.getString(3)%>', 'inicio2.jsp?idSecc=<%=rs3.getString(4)%>&p_tarea=<%=rs3.getString(3)%>&id_tarea=<%=rs3.getString(5)%>', 'TAREA');
+
+                                    <% }
+                                        db3.desconectar();
+                                    %>
+
+
+                                    document.write(d);
+
+                                </script>
+
+                            </div>   
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+
+
+
 
             <!-- The Modal Proyectos -->
             <div class="modal" id="myModal">
