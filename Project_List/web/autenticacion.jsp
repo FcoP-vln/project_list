@@ -27,7 +27,7 @@
                     session.setAttribute("id_user", rs1.getString(1));
 
                 }
-                db1.query.execute("select nombre, contraseña, idusuario from tblusuario");
+                db1.query.execute("select nombre, contrasenia from tblusuario");
                 ResultSet rs = db1.query.getResultSet();
                 String centinela = "n";
 
