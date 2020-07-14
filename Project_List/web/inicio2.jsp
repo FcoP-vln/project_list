@@ -3,6 +3,8 @@
     Created on : 13-jul-2020, 19:53:34
     Author     : Francisco
 --%>
+<%@page import="java.io.FileOutputStream"%>
+<%@page import="java.io.File"%>
 <%@page import="java.sql.ResultSet"%>
 <%
     response.setHeader("Pragma", "no-cache");
@@ -23,6 +25,7 @@
 %>
 
 <%@page import="database.Dba"%>
+<%@page import="database.controladorsalir"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
