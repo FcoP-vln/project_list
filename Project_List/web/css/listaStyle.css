@@ -16,8 +16,8 @@ color: #818181}
 #menuSecc * { list-style:none;
 color: #818181}
 
-#menu li{ line-height:180%; padding-left: 10px; padding-top: 10px; padding-right: 8px;}
-#menu2 li{ line-height:180%; padding-left: 10px; padding-top: 10px; padding-right: 8px;}
+#menu li{ line-height:180%; padding-left: 5px; padding-top: 10px; padding-right: 8px;}
+#menu2 li{ line-height:180%; padding-left: 5px; padding-top: 10px; padding-right: 8px;}
 #menuProyecto li{ line-height:150%; padding-left: 25px; padding-top: 10px; padding-right: 18px;}
 #menusecc li{ line-height:180%; padding-left: 25px; padding-top: 10px; padding-right: 8px;}
 
@@ -90,14 +90,14 @@ color: #818181}
 
 #menu2 .btn {
     color: #fe1a04;
-    margin-left: 75px;
-    font-size: 20px;
+    margin-left: 70px;
+    font-size: 18px;
     
 }
 #menu2 .btn:hover {
     color: #f1f1f1;
-    margin-left: 75px;
-    font-size: 22px;
+    margin-left: 70px;
+    font-size: 20px;
     
 }
 #menu2 a:active, #menu a:active{
@@ -106,14 +106,14 @@ color: #818181}
 
 #menuProyecto .btn {
     color: #fe1a04;
-    margin-left: 75px;
-    font-size: 20px;
+    margin-left: 70px;
+    font-size: 18px;
     
 }
 #menuProyecto .btn:hover {
     color: #f1f1f1;
-    margin-left: 75px;
-    font-size: 22px;
+    margin-left: 70px;
+    font-size: 20px;
     
 }
 #menuProyecto a:active, #menu a:active{
