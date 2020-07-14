@@ -40,7 +40,7 @@
             <!-- actualizar página -->
             <a href="inicio2.jsp?p_proyecto" onclick="mostrar()"><img src="img/inicio.png" width="25" height="25" alt="inicio"/></a>       
             <!-- Exit seguro -->
-            <a class="active" href="controladorsalir.do" style="float:right"><img src="img/exit.png" width="25" height="25" alt="menu"/></a>
+            <a class="active" href="index.jsp" style="float:right"><img src="img/exit.png" width="25" height="25" alt="menu"/></a>
             <a class="btn" name="mConfig" data-toggle="modal" data-target="#myModal_Datos" href="#" style="float:right"><img src="img/man.png" width="25" height="25" alt="user"/></a>
             <a style="float:right"><%=session.getAttribute("s_user")%></a>
 
