@@ -144,7 +144,33 @@
         </div>
 
 
+ <%               
+                if (request.getParameter("btn_añadir1") != null) {
 
+                    java.text.DateFormat df = new java.text.SimpleDateFormat("dd/MM/yyyy");
+                    String f_crea;
+                    f_crea = df.format(new java.util.Date());
+                    
+                    Dba db = new Dba();
+                    db.Conectar();
+                    try {
+
+                        int contador = db.query.executeUpdate("insert into TBLPROYECTO(nombrepro, fechacrea, color, iduser) values('" + request.getParameter("p_proyecto") + "','" + f_crea + "','" + request.getParameter("color") + "','" + request.getParameter("el_id") + "')");
+
+                        if (contador == 1) {
+                            out.print("<script>alert('El Proyecto fue registrado correctamente');</script>");
+                        }
+                        
+                        db.commit();
+                        db.desconectar();
+                    } catch (Exception e) {
+
+                        e.printStackTrace();
+                        out.print("<script>alert('El Proyecto NO FUE añadido"
+                                + "...Inténtelo de nuevo');</script>");
+                    }
+                }
+            %>
 
 
     </body>
