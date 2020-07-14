@@ -116,12 +116,25 @@
                             if (request.getParameter("secciones") != null) {
                         %>
                         <label for="nivel2-1"><b><%=request.getParameter("secciones")%></b></label><button type="button" class="btn" data-toggle="modal" data-target="#myModalT">&#43;</button>
-
+<button type="button" data-toggle="modal" data-target="#myModalGS" id="btnGestionS" name="btnGestionS" value="50">&#8803;</button>
                         <% } else {%>
-                        <label for="nivel2-1"></label><button type="button" class="btn" data-toggle="modal" data-target="#myModalT">&#43;</button>                   
-
+                        <label for="nivel2-1"></label>                  
+<button type="button" data-toggle="modal" data-target="#myModalGS" id="btnGestionS" name="btnGestionS" value="50">&#8230;</button>
                         <%
                             }
+                        %>              
+
+                        <hr>  
+
+                    </li>
+                    <li>
+                        <%
+                            if (request.getParameter("id_tarea") != null) {
+                        %>
+                        <label for="nivel2-1"><b><%=request.getParameter("p_tarea")%></b></label>
+                        <button type="button" data-toggle="modal" data-target="#myModalGT" id="btnGestion" name="btnGestionT" value="50">&#9776</button>
+
+                        <% }
                         %>              
 
                         <hr>  
@@ -331,6 +344,73 @@
             </div>
         </div>
 
+        <!-- ************************************************************ADMINISTRAR *************-->            
+        <!-- GESTIONAR SECCIONEEEESS *************-->
+
+        <div class="modal" id="myModalGS">
+            <div class=" modal-dialog ">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header border-dark" > 
+                        <h4 class="modal-title" style="color: #f1f1f1;">Gestionar Sección</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <form name="añadirS" action="inicio2.jsp" method="GET"> 
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <input type="text" name="secciones" id="n_seccion" placeholder="Agrega una sección" value="<%=request.getParameter("secciones")%>" required>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer border-dark" style="align-content: center;">
+                            <input type="hidden" name="ti_seccionM" value="<%=request.getParameter("idSecc")%>"/>
+                            <button type="submit" name="btn_eliminarS" value="" id="btn_eliminarS" class="btn btn-danger">Eliminar</button>
+                        </div>
+                    </form>
+                </div>    
+            </div>
+        </div>
+
+                            <!-- gestionar Tarea -->
+    <div class="modal" id="myModalGT">
+                    <div class=" modal-dialog modal-lg">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header border-dark" > 
+                                <h4 class="modal-title" style="color: #f1f1f1;">Gestionar TAREA</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <form name="añadir" action="inicio2.jsp?" method="GET"> 
+                                <!-- Modal body -->
+                                 <% if(request.getParameter("id_tarea")!=null){
+                                            
+                                        %> 
+                                <div class="modal-body">
+                                    <input type="text" name="ti_tarea" id="n_Gtarea" value="<%=request.getParameter("p_tarea")%>" required readonly="readonly"> 
+                                </div>
+                                       
+                                <!-- Modal footer -->
+                                <div class="modal-footer border-dark" style="align-content: center;">
+                               
+                                    <input type="hidden" name="id_tarea" value="<%=request.getParameter("id_tarea")%>"/>
+                                    <input type="hidden" name="el_idpGT" value="<%=session.getAttribute("id_user")%>">
+
+                                    <button type="submit" name="btn_eliminarT" value="" id="btn_eliminarT1" class="btn btn-danger">Eliminar tarea</button>
+                                    <button type="button"  class="btn border-dark" style="color: #818181; background-color: rgba(0,0,0,.3);" data-dismiss="modal">Cancelar</button>
+                               
+                                     <%
+                                            }else{
+                                    %>
+                                    <label>DEBE seleccionar la tarea del árbol*</label>
+                              <%}
+                                 %>
+                                </div>
+                            </form>
+                        </div>    
+                    </div>
+                </div>
+                                
 
         <!-- Para registrar Proyecto -->
         <% //para registrar PROYECTO
@@ -411,6 +491,53 @@
                     e.printStackTrace();
                     out.print("<script>alert('La tarea NO FUE añadido"
                             + "...Inténtelo de nuevo');</script>");
+                }
+            }
+        %>
+
+        <!-- *****ELIMINAR SECCIONES ******** -->
+<%
+            if (request.getParameter("btn_eliminarS") != null) {
+                  
+                try {
+                    Dba db = new Dba();
+                    db.Conectar();
+ 
+                   int contador = db.query.executeUpdate("delete from tblseccion WHERE idseccion='" + request.getParameter("ti_seccionM") + "'");
+
+                    if (contador >= 1) {
+                        db.query.executeUpdate("delete from tbltarea t WHERE t.idseccion='" + request.getParameter("ti_seccionM") + "'");
+                     
+                        out.print("<script>alert('La sección FUE ELIMINADA correctamente REFRESQUE la página!!!');</script>");
+                    }
+                    
+                    db.commit();
+                    db.desconectar();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        %>
+        
+        
+        <!--******Eliminar TAREAAAAAS *********-->
+        <%
+            if (request.getParameter("btn_eliminarT") != null) {
+
+                try {
+                    Dba db = new Dba();
+                    db.Conectar();
+
+                    int contador = db.query.executeUpdate("delete from tbltarea WHERE idtarea='" + request.getParameter("id_tarea") + "' ");
+
+                    if (contador >= 1) {
+                        out.print("<script>alert('La Tarea fue Eliminada correctamente');</script>");
+                    }
+
+                    db.commit();
+                    db.desconectar();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         %>
