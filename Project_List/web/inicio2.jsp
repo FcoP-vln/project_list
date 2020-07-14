@@ -29,8 +29,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Project List</title>
-        <script src="js/mainP.js"></script>
+        <link href="css/listaStyle.css" rel="stylesheet" type="text/css"/>
+        <link href="css/InicioEstilos.css" rel="stylesheet" type="text/css"/>   
+        
+        <link href="TREE/dtree.css" rel="stylesheet" type="text/css"/>
+        <link href="css/cssmodal.css" rel="stylesheet" type="text/css"/>
+        <link href="css/modal.css" rel="stylesheet" type="text/css"/>
+        
+        <script src="js/mainP.js"></script>       
         <script type="text/javascript" src="TREE/dtree.js"></script>	
+        <script src="js/jquery-3.5.1.min.js" type="text/javascript"></script>
+        
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
     </head>
     <body>
 
@@ -52,8 +62,7 @@
                 <a href="#hoy" id="m_hoy"><img src="img/hoy.png" width="25" height="25" alt="hoy" onclick="mostrarfecha()"/>  Hoy<span id="fechaHoy"> <%=df1.format(new java.util.Date())%></span></a>
 
                 <ul id="menu2">
-                    <li><input type="checkbox" name="list2" id="nivel1-2"><label for="nivel1-2"><b> 
-                                Proyectos </b></label><button type="button" class="btn" data-toggle="modal" data-target="#myModal">&#43;</button>
+                    <li><input type="checkbox" name="list2" id="nivel1-2"><span><label for="nivel1-2"><b>Proyectos</b></label><button type="button" class="btn" data-toggle="modal" data-target="#myModal">&#43;</button></span>
 
                         <ul class="interior">
                             <%
@@ -399,7 +408,7 @@
         <!-- EMPIEZA MIS_DATOS **************************************************** -->
 
         <div class="modal" id="myModal_Datos">
-            <div class=" modal-dialog modal-xl">
+            <div class=" modal-dialog modal-lg">
                 <div class="modal-content">
                     <!-- Modal Header -->
                     <div class="modal-header border-dark" > 
@@ -409,7 +418,7 @@
                     <form name="añadir" action="inicio2.jsp" method="GET"> 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            <table border="1">
+                            <table border="1" style="margin: auto;">
                                 <thead style="color: #95999c; background-color: #171a1d">
                                     <tr>
                                         <th>User ID</th>
@@ -437,7 +446,7 @@
 
                                     %>  
                                     <tr>  
-                                        <td><%=id%></td>
+                                        <td align="center"><%=id%></td>
                                         <td><%=nombre%></td>
                                         <td><%=email%></td>
                                         <td><%=pass%></td>
@@ -590,6 +599,10 @@
                 }
             }
         %>
+   
+    <script src="js/modal_1.js"></script>
+    <script src="js/modal.js"></script>
+   
 
     </body>
 </html>
