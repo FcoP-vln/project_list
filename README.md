@@ -14,8 +14,8 @@ _A web application to manage your projects your projects._
 * dataTree JS
 * modals
 * Oracle Database 11g EX
-* FrontEnd (pending)
-* css/bootstrap (included)
+* FrontEnd archives (https://github.com/FcoP-vln/Project_List_FrontEnd.git)
+* css/bootstrap/JS (included)
 
 ### ⌨️
 * Login screen
