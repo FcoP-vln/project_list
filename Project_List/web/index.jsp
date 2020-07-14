@@ -12,8 +12,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>LOGIN</title>
+       
         
-         <link rel="icon" href="img/favicon.ico" type="image/ico"/>
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/> <!--for Front-end -->
+        <link rel="icon" href="img/favicon.ico" type="image/ico"/>
         <script src="js/md5.js" type="text/javascript"></script>
         <script>
             function modificarPASS(accion) {
@@ -91,5 +93,9 @@
                 </form>
             </div>           
         </div>
+            
+        <script src="js/jquery-3.1.1.min.js"></script>  <!--for Front-end -->  
+        <script src="js/main.js"></script>
+        
     </body>
 </html>
