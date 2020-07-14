@@ -3,6 +3,9 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.sql.ResultSet;
+import database.Dba;
+import database.*;
 
 public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,11 +47,35 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>INICIO</title>\n");
+      out.write("        <title>LOGIN</title>\n");
+      out.write("       \n");
+      out.write("        \n");
+      out.write("        <link href=\"https://github.com/FcoP-vln/Project_List_FrontEnd.git/estilos.css\" rel=\"stylesheet\" type=\"text/css\"/> <!--for Front-end -->\n");
+      out.write("        <link rel=\"icon\" href=\"img/favicon.ico\" type=\"image/ico\"/>\n");
+      out.write("        <script src=\"js/md5.js\" type=\"text/javascript\"></script>\n");
+      out.write("        <script>\n");
+      out.write("            function modificarPASS(accion) {\n");
+      out.write("                if (accion === 1) {\n");
+      out.write("                    document.getElementById('hd_accion').value = 1;\n");
+      out.write("                    var sinCifrar = document.getElementById('ti_contrasenia1').value;\n");
+      out.write("                    document.getElementById('ti_contrasenia1').value = hex_md5(sinCifrar);\n");
+      out.write("                    f1.submit();\n");
+      out.write("                }\n");
+      out.write("\n");
+      out.write("                if (accion === 2) {\n");
+      out.write("                    document.getElementById('hd_accion1').value = 2;\n");
+      out.write("                    var sinCifrar = document.getElementById('ti_contrasenia').value;\n");
+      out.write("                    document.getElementById('ti_contrasenia').value = hex_md5(sinCifrar);\n");
+      out.write("                    f1.submit();\n");
+      out.write("                }\n");
+      out.write("            }\n");
+      out.write("        </script>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        ");
@@ -64,14 +91,39 @@ request.setCharacterEncoding("UTF-8");
       out.write("\n");
       out.write("                <h2>Inicia Sesión</h2>\n");
       out.write("                <form action=\"autenticacion.jsp\" method=\"POST\">\n");
-      out.write("                    <input type=\"text\" name=\"ti_nombre\" placeholder=\"&#xf004;  Nombre\" autofocus required>\n");
+      out.write("                    <input type=\"text\" name=\"ti_nombre\" placeholder=\"Nombre\" autofocus required>\n");
       out.write("                    <input type=\"password\" id=\"ti_contrasenia1\" name= \"ti_contrasenia1\" placeholder=\"&#9000; Contraseña\" required>\n");
       out.write("                    <input type=\"submit\" name=\"btnLog\" value=\"Iniciar Sesión\" onclick=\"modificarPASS(1);\">\n");
       out.write("                    <input type=\"hidden\" name=\"hd_accion\"  id=\"hd_accion\" value=\"\">\n");
       out.write("               </form> \n");
       out.write("            </div>\n");
+      out.write("         ");
+  //registrar usuario en BD
+             if (request.getParameter("btn_registrar") != null) {
+
+                    Dba db = new Dba();
+                    db.Conectar();
+                    try {
+                        if (request.getParameter("hd_accion1").equals("2")) {
+                            int contador = db.query.executeUpdate("insert into TBLUSUARIO(nombre, email, contrasenia) values('" + request.getParameter("ti_nombre") + "','" + request.getParameter("ti_email") + "','" + request.getParameter("ti_contrasenia") + "')");
+
+                            if (contador == 1) {
+                                out.print("<script>alert('El usuario fue registrado');</script>");
+                            }
+
+                            db.commit();
+                            db.desconectar();
+                        }
+                    } catch (Exception e) {
+
+                        e.printStackTrace();
+                        out.print("<script>alert('El Usuario NO FUE Registrado"
+                                + "...Inténtelo de nuevo');</script>");
+                    }
+                }
+            
+      out.write("\n");
       out.write("            <div class=\"formulario\">\n");
-      out.write("                <h3><img src=\"img/favicon.ico\" width=\"45\" height=\"45\" alt=\"menu\"/></h3>\n");
       out.write("                <h2>Crea tu Cuenta</h2>\n");
       out.write("                <form action=\"index.jsp\" method=\"POST\">\n");
       out.write("                    <input type=\"text\" name=\"ti_nombre\" placeholder=\"Nombre\" required>\n");
@@ -85,13 +137,11 @@ request.setCharacterEncoding("UTF-8");
       out.write("                    <input type=\"hidden\" name=\"hd_accion1\"  id=\"hd_accion1\" value=\"\">\n");
       out.write("                      \n");
       out.write("                </form>\n");
-      out.write("            </div>\n");
-      out.write("            \n");
-      out.write("            \n");
-      out.write("            \n");
+      out.write("            </div>           \n");
       out.write("        </div>\n");
-      out.write("        \n");
-      out.write("        \n");
+      out.write("            \n");
+      out.write("        <script src=\"js/jquery-3.1.1.min.js\"></script>  <!--for Front-end -->  \n");
+      out.write("        <script src=\"js/main.js\"></script>\n");
       out.write("        \n");
       out.write("    </body>\n");
       out.write("</html>\n");
