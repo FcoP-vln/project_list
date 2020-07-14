@@ -39,7 +39,7 @@ public class Dba {
             String BaseDeDatos = "jdbc:oracle:thin:@localhost:1521:XE";
             
             //poner usuario y contraseña
-            conexion = DriverManager.getConnection(BaseDeDatos, "portamentoBD", "vanguardia2020");
+            conexion = DriverManager.getConnection(BaseDeDatos, "proList_db", "vanguardia2020");
             query = conexion.createStatement();
             if (conexion != null) {
                 System.out.println("Conexion exitosa!!");
