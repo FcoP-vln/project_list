@@ -173,50 +173,93 @@
                     </div>    
                 </div>
             </div>
-                                
- <!-- The Modal SECCIONES -->
-                <div class="modal" id="myModalS">
-                    <div class=" modal-dialog ">
-                        <div class="modal-content">
 
-                            <!-- Modal Header -->
-                            <div class="modal-header border-dark" > 
-                                <h4 class="modal-title" style="color: #818181;">Añadir Sección</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <!-- The Modal SECCIONES -->
+            <div class="modal" id="myModalS">
+                <div class=" modal-dialog ">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header border-dark" > 
+                            <h4 class="modal-title" style="color: #818181;">Añadir Sección</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <form name="añadirS" action="inicio2.jsp" method="GET"> 
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <% if (request.getParameter("idproyecto") != null) {
+
+                                %>
+
+
+                                <input type="text" name="secciones" id="n_seccion" placeholder="Agrega una sección" required>
+
                             </div>
-                            <form name="añadirS" action="inicio2.jsp" method="GET"> 
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                        <% if(request.getParameter("idproyecto")!=null){
-                                            
-                                        %>
-                                         
-                                    
-                                    <input type="text" name="secciones" id="n_seccion" placeholder="Agrega una sección" required>
-                               
-                                </div>
-                                <!-- Modal footer -->
-                                <div class="modal-footer border-dark" style="align-content: center;">
-                                   
-                                    <input type="hidden" name="idproyecto" value="<%=request.getParameter("idproyecto")%>"/>
-                                
-                                    <button type="submit" name="btn_añadirS" value="" id="btn_añadirS" class="btn btn-danger">Añadir sección</button>
-                                    <button type="button"  class="btn border-dark" style="color: #818181; background-color: rgba(0,0,0,.3);" data-dismiss="modal">Cancelar</button>
-                                   <%
-                                            }else{
-                                    %>
-                                    <label style="color: #f1f1f1">DEBE seleccionar un proyecto en el menú lateral Proyectos*</label>
-                              <%}
-                                 %>
-                                </div>
-                            </form>
-                        </div>    
-                    </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer border-dark" style="align-content: center;">
+
+                                <input type="hidden" name="idproyecto" value="<%=request.getParameter("idproyecto")%>"/>
+
+                                <button type="submit" name="btn_añadirS" value="" id="btn_añadirS" class="btn btn-danger">Añadir sección</button>
+                                <button type="button"  class="btn border-dark" style="color: #818181; background-color: rgba(0,0,0,.3);" data-dismiss="modal">Cancelar</button>
+                                <%
+                                } else {
+                                %>
+                                <label style="color: #f1f1f1">DEBE seleccionar un proyecto en el menú lateral Proyectos*</label>
+                                <%}
+                                %>
+                            </div>
+                        </form>
+                    </div>    
                 </div>
+            </div>
 
         </div>
 
-<!-- Para registrar Proyecto -->
+
+
+        <!-- The Modal Tareas -->
+        <div class="modal" id="myModalT">
+            <div class=" modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header border-dark" > 
+                        <h4 class="modal-title" style="color: #818181;">Añadir TAREA</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <form name="añadir" action="inicio2.jsp?" method="GET"> 
+                        <!-- Modal body -->
+                        <div class="modal-body">
+
+                            <% if (request.getParameter("idSecc") != null) {
+
+                            %> 
+                            <input type="text" name="ti_tarea" id="n_tarea" placeholder="Agrega tu tarea" required>
+
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer border-dark" style="align-content: center;">
+                            <input type="hidden" name="idSecc" value="<%=request.getParameter("idSecc")%>" />
+                            <input type="hidden" name="el_idpT" value="<%=session.getAttribute("id_user")%>">
+                            <button type="submit" name="btn_añadirT" value="" id="btn_añadirT1" class="btn btn-danger">Añadir tarea</button>
+                            <button type="button"  class="btn border-dark" style="color: #818181; background-color: rgba(0,0,0,.3);" data-dismiss="modal">Cancelar</button>
+
+                            <%
+                            } else {
+                            %>
+                            <label style="color: #f1f1f1">Actualice y elija una sección en el menú*</label>
+                            <%}
+                            %>
+
+                        </div>
+                    </form>
+                </div>    
+            </div>
+        </div>
+
+
+        <!-- Para registrar Proyecto -->
         <% //para registrar PROYECTO
             if (request.getParameter("btn_añadir1") != null) {
 
@@ -244,34 +287,60 @@
                 }
             }
         %>
-        
-        
-<!--para registrar Sección-->
-            <% //para registrar SECCION
 
-                if (request.getParameter("btn_añadirS") != null) {
+        <!--para registrar Sección-->
+        <% //para registrar SECCION
 
-                    Dba db = new Dba();
-                    db.Conectar();
-                    try {
+            if (request.getParameter("btn_añadirS") != null) {
 
-                        int contador = db.query.executeUpdate("insert into TBLSECCION(nombre, idproyecto) values('" + request.getParameter("secciones") + "','" + request.getParameter("idproyecto") + "')");
+                Dba db = new Dba();
+                db.Conectar();
+                try {
 
-                        if (contador == 1) {
-                            out.print("<script>alert('La Sección fue registrada correctamente');</script>");
-                        }
-                        
-                        db.commit();
-                        db.desconectar();
+                    int contador = db.query.executeUpdate("insert into TBLSECCION(nombre, idproyecto) values('" + request.getParameter("secciones") + "','" + request.getParameter("idproyecto") + "')");
 
-                    } catch (Exception e) {
-
-                        e.printStackTrace();
-                        out.print("<script>alert('La sección NO FUE añadida"
-                                + "...Inténtelo de nuevo');</script>");
+                    if (contador == 1) {
+                        out.print("<script>alert('La Sección fue registrada correctamente');</script>");
                     }
+
+                    db.commit();
+                    db.desconectar();
+
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+                    out.print("<script>alert('La sección NO FUE añadida"
+                            + "...Inténtelo de nuevo');</script>");
                 }
-            %>
+            }
+        %>
+
+        <!--para registrar Tarea-->
+        <% //para registrar TAREA
+
+            if (request.getParameter("btn_añadirT") != null) {
+
+                Dba db = new Dba();
+                db.Conectar();
+                try {
+
+                    int contador = db.query.executeUpdate("insert into TBLTAREA(nomtarea, idseccion, idusuario) values('" + request.getParameter("ti_tarea") + "', '" + request.getParameter("idSecc") + "', '" + request.getParameter("el_idpT") + "')");
+
+                    if (contador == 1) {
+                        out.print("<script>alert('La Tarea fue registrada correctamente');</script>");
+                    }
+
+                    db.commit();
+                    db.desconectar();
+
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+                    out.print("<script>alert('La tarea NO FUE añadido"
+                            + "...Inténtelo de nuevo');</script>");
+                }
+            }
+        %>
 
     </body>
 </html>
