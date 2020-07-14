@@ -1,9 +1,10 @@
 
 # Project List
 
-_A web application to save your projects._
+_A web application to manage your projects your projects._
 
 ## 🚀
+* Add and modify projects 📋
 * Sections are added to each project 📋
 * Tasks are added in each section 📄
 * Both can be removed 🔧
@@ -11,8 +12,10 @@ _A web application to save your projects._
 ## 🛠️
 * JSP
 * dataTree JS
+* modals
 * Oracle Database 11g EX
-* FrontEnd (pending).
+* FrontEnd (pending)
+* css/bootstrap (included)
 
 ### ⌨️
 * Login screen
