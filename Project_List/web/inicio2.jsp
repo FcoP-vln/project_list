@@ -37,14 +37,12 @@
         <div class="topnav">
 
             <a href="#" ><span style="font-size:25px; cursor:pointer;" onclick="closeNav()" onmouseover="openNav()"><img src="img/menu.png" width="25" height="25" alt="menu"/></span></a>
-
             <!-- actualizar página -->
             <a href="inicio2.jsp?p_proyecto" onclick="mostrar()"><img src="img/inicio.png" width="25" height="25" alt="inicio"/></a>       
-
             <!-- Exit seguro -->
             <a class="active" href="controladorsalir.do" style="float:right"><img src="img/exit.png" width="25" height="25" alt="menu"/></a>
-
-            <a style="float:right"><%=session.getAttribute("s_user")%><img src="img/man.png" width="25" height="25" alt="man"/></a>
+            <a class="btn" name="mConfig" data-toggle="modal" data-target="#myModal_Datos" href="#" style="float:right"><img src="img/man.png" width="25" height="25" alt="user"/></a>
+            <a style="float:right"><%=session.getAttribute("s_user")%></a>
 
         </div>
 
@@ -58,8 +56,6 @@
                                 Proyectos </b></label><button type="button" class="btn" data-toggle="modal" data-target="#myModal">&#43;</button>
 
                         <ul class="interior">
-
-
                             <%
 
                                 try {
@@ -75,6 +71,7 @@
                                         color = rs.getString(3);
 
                             %>
+
                             <li><a href="inicio2.jsp?p_proyecto=<%=proyecto%>&idproyecto=<%=id%>&p_color=<%=color%>&secciones=" style="color:<%=color%>;">&#9775;<span> <%=proyecto%></span></a></li>
 
                             <%        }
@@ -95,10 +92,8 @@
             <div id ="main" class="column middle">
 
                 <h2 style="color:#818181;">Hola <% out.print(session.getAttribute("s_user")); %></h2>
-
                 <br>
                 <br>
-
                 <%  if (request.getParameter("p_proyecto") == null) { %>
                 <h3 id="mostrarTitPro1"></h3><button type="button" class="btn" data-toggle="modal" data-target="#myModalS" style="color:#fe1a04;">&#43; SECCION</button>
                     <%
@@ -110,22 +105,19 @@
                 %>              
 
                 <ul id="menuProyecto" class="menuProyecto">         
-
                     <li>
                         <%
                             if (request.getParameter("secciones") != null) {
                         %>
                         <label for="nivel2-1"><b><%=request.getParameter("secciones")%></b></label><button type="button" class="btn" data-toggle="modal" data-target="#myModalT">&#43;</button>
-<button type="button" data-toggle="modal" data-target="#myModalGS" id="btnGestionS" name="btnGestionS" value="50">&#8803;</button>
+                        <button type="button" data-toggle="modal" data-target="#myModalGS" id="btnGestionS" name="btnGestionS" value="50">&#8803;</button>
                         <% } else {%>
                         <label for="nivel2-1"></label>                  
-<button type="button" data-toggle="modal" data-target="#myModalGS" id="btnGestionS" name="btnGestionS" value="50">&#8230;</button>
+                        <button type="button" data-toggle="modal" data-target="#myModalGS" id="btnGestionS" name="btnGestionS" value="50">&#8230;</button>
                         <%
                             }
                         %>              
-
                         <hr>  
-
                     </li>
                     <li>
                         <%
@@ -136,15 +128,12 @@
 
                         <% }
                         %>              
-
                         <hr>  
-
                     </li>
-
                 </ul>  
             </div>
 
-
+<!-- ********************DATA TREE*************************************** -->
             <table>
                 <tbody>
                     <tr>
@@ -210,11 +199,6 @@
                     </tr>
                 </tbody>
             </table>
-
-
-
-
-
 
 
             <!-- The Modal Proyectos -->
@@ -371,46 +355,111 @@
             </div>
         </div>
 
-                            <!-- gestionar Tarea -->
-    <div class="modal" id="myModalGT">
-                    <div class=" modal-dialog modal-lg">
-                        <div class="modal-content">
+        <!-- gestionar Tarea -->
+        <div class="modal" id="myModalGT">
+            <div class=" modal-dialog modal-lg">
+                <div class="modal-content">
 
-                            <!-- Modal Header -->
-                            <div class="modal-header border-dark" > 
-                                <h4 class="modal-title" style="color: #f1f1f1;">Gestionar TAREA</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            <form name="añadir" action="inicio2.jsp?" method="GET"> 
-                                <!-- Modal body -->
-                                 <% if(request.getParameter("id_tarea")!=null){
-                                            
-                                        %> 
-                                <div class="modal-body">
-                                    <input type="text" name="ti_tarea" id="n_Gtarea" value="<%=request.getParameter("p_tarea")%>" required readonly="readonly"> 
-                                </div>
-                                       
-                                <!-- Modal footer -->
-                                <div class="modal-footer border-dark" style="align-content: center;">
-                               
-                                    <input type="hidden" name="id_tarea" value="<%=request.getParameter("id_tarea")%>"/>
-                                    <input type="hidden" name="el_idpGT" value="<%=session.getAttribute("id_user")%>">
-
-                                    <button type="submit" name="btn_eliminarT" value="" id="btn_eliminarT1" class="btn btn-danger">Eliminar tarea</button>
-                                    <button type="button"  class="btn border-dark" style="color: #818181; background-color: rgba(0,0,0,.3);" data-dismiss="modal">Cancelar</button>
-                               
-                                     <%
-                                            }else{
-                                    %>
-                                    <label>DEBE seleccionar la tarea del árbol*</label>
-                              <%}
-                                 %>
-                                </div>
-                            </form>
-                        </div>    
+                    <!-- Modal Header -->
+                    <div class="modal-header border-dark" > 
+                        <h4 class="modal-title" style="color: #f1f1f1;">Gestionar TAREA</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                </div>
-                                
+                    <form name="añadir" action="inicio2.jsp?" method="GET"> 
+                        <!-- Modal body -->
+                        <% if (request.getParameter("id_tarea") != null) {
+
+                        %> 
+                        <div class="modal-body">
+                            <input type="text" name="ti_tarea" id="n_Gtarea" value="<%=request.getParameter("p_tarea")%>" required readonly="readonly"> 
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer border-dark" style="align-content: center;">
+
+                            <input type="hidden" name="id_tarea" value="<%=request.getParameter("id_tarea")%>"/>
+                            <input type="hidden" name="el_idpGT" value="<%=session.getAttribute("id_user")%>">
+
+                            <button type="submit" name="btn_eliminarT" value="" id="btn_eliminarT1" class="btn btn-danger">Eliminar tarea</button>
+                            <button type="button"  class="btn border-dark" style="color: #818181; background-color: rgba(0,0,0,.3);" data-dismiss="modal">Cancelar</button>
+
+                            <%
+                            } else {
+                            %>
+                            <label>DEBE seleccionar la tarea del árbol*</label>
+                            <%}
+                            %>
+                        </div>
+                    </form>
+                </div>    
+            </div>
+        </div>
+
+
+        <!-- EMPIEZA MIS_DATOS **************************************************** -->
+
+        <div class="modal" id="myModal_Datos">
+            <div class=" modal-dialog modal-xl">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header border-dark" > 
+                        <h4 class="modal-title" style="color: #818181;">My Data</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <form name="añadir" action="inicio2.jsp" method="GET"> 
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <table border="1">
+                                <thead style="color: #95999c; background-color: #171a1d">
+                                    <tr>
+                                        <th>User ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Password</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="color:#818181;">
+
+                                    <%
+                                        Dba db1 = new Dba();
+                                        db1.Conectar();
+
+                                        db1.query.executeUpdate("Select u.idusuario, u.nombre, u.email, u.contrasenia from tblusuario u where u.idusuario='" + session.getAttribute("id_user") + "'");
+
+                                        ResultSet rs = db1.query.getResultSet();
+
+                                        while (rs.next()) {
+                                            String id, nombre, email, pass;
+                                            id = rs.getString(1);
+                                            nombre = rs.getString(2);
+                                            email = rs.getString(3);
+                                            pass = rs.getString(4);
+
+                                    %>  
+                                    <tr>  
+                                        <td><%=id%></td>
+                                        <td><%=nombre%></td>
+                                        <td><%=email%></td>
+                                        <td><%=pass%></td>
+                                    </tr>   
+                                    <%}
+                                    %>
+
+                                </tbody>
+                            </table>              
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer border-dark">
+                            <button type="button" class="btn border-dark" style="color: #818181; background-color: rgba(0,0,0,.3);" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>    
+            </div>
+        </div>
+
+        <!-- TERMINA MIS_DATOS**************************************************** -->
+
+
 
         <!-- Para registrar Proyecto -->
         <% //para registrar PROYECTO
@@ -496,21 +545,21 @@
         %>
 
         <!-- *****ELIMINAR SECCIONES ******** -->
-<%
+        <%
             if (request.getParameter("btn_eliminarS") != null) {
-                  
+
                 try {
                     Dba db = new Dba();
                     db.Conectar();
- 
-                   int contador = db.query.executeUpdate("delete from tblseccion WHERE idseccion='" + request.getParameter("ti_seccionM") + "'");
+
+                    int contador = db.query.executeUpdate("delete from tblseccion WHERE idseccion='" + request.getParameter("ti_seccionM") + "'");
 
                     if (contador >= 1) {
                         db.query.executeUpdate("delete from tbltarea t WHERE t.idseccion='" + request.getParameter("ti_seccionM") + "'");
-                     
+
                         out.print("<script>alert('La sección FUE ELIMINADA correctamente REFRESQUE la página!!!');</script>");
                     }
-                    
+
                     db.commit();
                     db.desconectar();
                 } catch (Exception e) {
@@ -518,8 +567,8 @@
                 }
             }
         %>
-        
-        
+
+
         <!--******Eliminar TAREAAAAAS *********-->
         <%
             if (request.getParameter("btn_eliminarT") != null) {
