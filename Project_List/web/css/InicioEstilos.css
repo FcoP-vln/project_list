@@ -1,0 +1,134 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22-may-2020, 22:16:47
+    Author     : Francisco
+*/
+
+ * {
+                box-sizing: border-box;
+            }
+
+            body {
+                background: rgba(0,0,0,.9);
+                margin: 0;
+                
+            }
+            p:hover{
+                color: red;
+            }
+            /* Style the top navigation bar */
+            .topnav {
+                overflow: hidden;
+                background-color: #333;
+                position: fixed;
+                width:100%;
+                border-bottom: solid;
+                border-bottom-color: rgba(0,0,0,.1);
+                z-index: 1;
+            }
+
+            /* Style the topnav links */
+            .topnav a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 10px 10px;
+                text-decoration: none;
+                 border-radius: 5px;
+                
+
+
+            }
+      
+
+            /* Change color on hover */
+            .topnav a:hover {
+                background-color: #818181;
+                color: black;
+            }
+
+            /*Create unequal columns that floats next to each other */
+            .column {
+                float: left;
+                padding: 10px;
+
+            }
+
+            /* Left and right column */
+            .column_side {
+                width: 20%;
+                height: 100%;
+                background: rgba(0,0,0,.5);
+                border-left: solid;
+               
+
+            }
+             ul {
+                list-style-type: none;
+             }
+
+            .column_side.ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                width: 20%;
+                background-color: #f1f1f1;
+                position: fixed;
+                height: 100%;
+                overflow: auto;
+            }
+
+            li a {
+                display: block;
+                color: #f2f2f2;
+                padding: 8px 16px;
+                text-decoration: none;
+                
+                
+            }
+          
+ li a:focus {
+                background-color:#333;
+                color: white;
+            }
+
+            li a:hover:not(.active) {
+                background-color:#333;
+                color: white;
+            }
+
+
+            /* Middle column */
+            .column.middle {
+                color: #f1f1f1;
+             margin-top: 80px;
+               margin-left: 263px;               
+                width: 75%;
+                min-height: 100%;
+                align-content:  center;
+                
+            }
+         
+            .column.middle img{                
+             margin-left: 300px;
+
+            }
+          
+           /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+            @media screen and (max-width: 600px) {
+                .column_side, .column.middle {
+                    width: 100%;
+                }
+            }
