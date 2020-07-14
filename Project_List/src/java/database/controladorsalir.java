@@ -43,6 +43,6 @@ public class controladorsalir extends HttpServlet {
 
     @Override
     public String getServletInfo() {
-        return "Description";
+        return "Short description";
     }
 }
