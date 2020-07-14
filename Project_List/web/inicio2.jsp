@@ -29,7 +29,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Project List</title>
-    <script src="js/mainP.js"></script>
+        <script src="js/mainP.js"></script>
 
     </head>
     <body>
@@ -90,88 +90,188 @@
                 </ul>
 
             </div>
-                        
-                        
-                        <div id ="main" class="column middle">
-                            
-                            
-                        </div>
 
-<!-- The Modal Proyectos -->
-                <div class="modal" id="myModal">
-                    <div class=" modal-dialog">
+
+            <div id ="main" class="column middle">
+
+                <h2 style="color:#818181;">Hola <% out.print(session.getAttribute("s_user")); %></h2>
+
+                <br>
+                <br>
+
+                <%  if (request.getParameter("p_proyecto") == null) { %>
+                <h3 id="mostrarTitPro1"></h3><button type="button" class="btn" data-toggle="modal" data-target="#myModalS" style="color:#fe1a04;">&#43; SECCION</button>
+                    <%
+                    } else {
+                    %>    
+                <h3 id="mostrarTitPro"><%=request.getParameter("p_proyecto")%></h3> <button type="button" class="btn" data-toggle="modal" data-target="#myModalS" style="color:#fe1a04;">&#43; SECCION</button>
+                <%
+                    }
+                %>              
+
+                <ul id="menuProyecto" class="menuProyecto">         
+
+                    <li>
+                        <%
+                            if (request.getParameter("secciones") != null) {
+                        %>
+                        <label for="nivel2-1"><b><%=request.getParameter("secciones")%></b></label><button type="button" class="btn" data-toggle="modal" data-target="#myModalT">&#43;</button>
+
+                        <% } else {%>
+                        <label for="nivel2-1"></label><button type="button" class="btn" data-toggle="modal" data-target="#myModalT">&#43;</button>                   
+
+                        <%
+                            }
+                        %>              
+
+                        <hr>  
+
+                    </li>
+
+                </ul>  
+            </div>
+
+            <!-- The Modal Proyectos -->
+            <div class="modal" id="myModal">
+                <div class=" modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header border-dark" > 
+                            <h4 class="modal-title" style="color: #818181;">Añadir Proyecto</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <form name="añadir" action="inicio2.jsp" method="GET"> 
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <p>Nombre del proyecto: </p><input type="text" name="p_proyecto" id="n_proyecto" required>
+                                <br><br>
+                                <p>Color del proyecto</p>
+
+                                <select name="color" class="color_pro">
+                                    <option value="#818181">Seleccionar</option>
+                                    <option style="color:#0071c5;" value="#0071c5">&#10687; Azul oscuro</option>
+                                    <option style="color:#40E0D0;" value="#40E0D0">&#10687; Turquesa</option> 
+                                    <option style="color:#008000;" value="#008000">&#10687; Verde</option> 
+                                    <option style="color:#FFD700;" value="#FFD700">&#10687; Amarillo</option> 
+                                    <option style="color:#FF8C00;" value="#FF8C00">&#10687; Naranja</option> 
+                                    <option style="color:#FF0000;" value="#FF0000">&#10687; Rojo</option>                                   
+                                </select>
+
+                                <br><br>
+
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer border-dark">
+
+                                <input type="hidden" name="el_id" value="<%=session.getAttribute("id_user")%>">
+                                <button type="button" class="btn border-dark" style="color: #818181; background-color: rgba(0,0,0,.3);" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" name="btn_añadir1" value="" id="btn_añadir" class="btn btn-danger">Añadir</button>
+
+                            </div>
+                        </form>
+                    </div>    
+                </div>
+            </div>
+                                
+ <!-- The Modal SECCIONES -->
+                <div class="modal" id="myModalS">
+                    <div class=" modal-dialog ">
                         <div class="modal-content">
 
                             <!-- Modal Header -->
                             <div class="modal-header border-dark" > 
-                                <h4 class="modal-title" style="color: #818181;">Añadir Proyecto</h4>
+                                <h4 class="modal-title" style="color: #818181;">Añadir Sección</h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
-                            <form name="añadir" action="inicio2.jsp" method="GET"> 
+                            <form name="añadirS" action="inicio2.jsp" method="GET"> 
                                 <!-- Modal body -->
                                 <div class="modal-body">
-                                    <p>Nombre del proyecto: </p><input type="text" name="p_proyecto" id="n_proyecto" required>
-                                    <br><br>
-                                    <p>Color del proyecto</p>
-
-                                    <select name="color" class="color_pro">
-                                        <option value="#818181">Seleccionar</option>
-                                        <option style="color:#0071c5;" value="#0071c5">&#10687; Azul oscuro</option>
-                                        <option style="color:#40E0D0;" value="#40E0D0">&#10687; Turquesa</option> 
-                                        <option style="color:#008000;" value="#008000">&#10687; Verde</option> 
-                                        <option style="color:#FFD700;" value="#FFD700">&#10687; Amarillo</option> 
-                                        <option style="color:#FF8C00;" value="#FF8C00">&#10687; Naranja</option> 
-                                        <option style="color:#FF0000;" value="#FF0000">&#10687; Rojo</option>                                   
-                                    </select>
-
-                                    <br><br>
-                              
+                                        <% if(request.getParameter("idproyecto")!=null){
+                                            
+                                        %>
+                                         
+                                    
+                                    <input type="text" name="secciones" id="n_seccion" placeholder="Agrega una sección" required>
+                               
                                 </div>
                                 <!-- Modal footer -->
-                                <div class="modal-footer border-dark">
-
-                                    <input type="hidden" name="el_id" value="<%=session.getAttribute("id_user")%>">
-                                    <button type="button" class="btn border-dark" style="color: #818181; background-color: rgba(0,0,0,.3);" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" name="btn_añadir1" value="" id="btn_añadir" class="btn btn-danger">Añadir</button>
-
+                                <div class="modal-footer border-dark" style="align-content: center;">
+                                   
+                                    <input type="hidden" name="idproyecto" value="<%=request.getParameter("idproyecto")%>"/>
+                                
+                                    <button type="submit" name="btn_añadirS" value="" id="btn_añadirS" class="btn btn-danger">Añadir sección</button>
+                                    <button type="button"  class="btn border-dark" style="color: #818181; background-color: rgba(0,0,0,.3);" data-dismiss="modal">Cancelar</button>
+                                   <%
+                                            }else{
+                                    %>
+                                    <label style="color: #f1f1f1">DEBE seleccionar un proyecto en el menú lateral Proyectos*</label>
+                              <%}
+                                 %>
                                 </div>
                             </form>
                         </div>    
                     </div>
                 </div>
 
-
         </div>
 
+<!-- Para registrar Proyecto -->
+        <% //para registrar PROYECTO
+            if (request.getParameter("btn_añadir1") != null) {
 
- <%               
-                if (request.getParameter("btn_añadir1") != null) {
+                java.text.DateFormat df = new java.text.SimpleDateFormat("dd/MM/yyyy");
+                String f_crea;
+                f_crea = df.format(new java.util.Date());
 
-                    java.text.DateFormat df = new java.text.SimpleDateFormat("dd/MM/yyyy");
-                    String f_crea;
-                    f_crea = df.format(new java.util.Date());
-                    
+                Dba db = new Dba();
+                db.Conectar();
+                try {
+
+                    int contador = db.query.executeUpdate("insert into TBLPROYECTO(nombrepro, fechacrea, color, iduser) values('" + request.getParameter("p_proyecto") + "','" + f_crea + "','" + request.getParameter("color") + "','" + request.getParameter("el_id") + "')");
+
+                    if (contador == 1) {
+                        out.print("<script>alert('El Proyecto fue registrado correctamente');</script>");
+                    }
+
+                    db.commit();
+                    db.desconectar();
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+                    out.print("<script>alert('El Proyecto NO FUE añadido"
+                            + "...Inténtelo de nuevo');</script>");
+                }
+            }
+        %>
+        
+        
+<!--para registrar Sección-->
+            <% //para registrar SECCION
+
+                if (request.getParameter("btn_añadirS") != null) {
+
                     Dba db = new Dba();
                     db.Conectar();
                     try {
 
-                        int contador = db.query.executeUpdate("insert into TBLPROYECTO(nombrepro, fechacrea, color, iduser) values('" + request.getParameter("p_proyecto") + "','" + f_crea + "','" + request.getParameter("color") + "','" + request.getParameter("el_id") + "')");
+                        int contador = db.query.executeUpdate("insert into TBLSECCION(nombre, idproyecto) values('" + request.getParameter("secciones") + "','" + request.getParameter("idproyecto") + "')");
 
                         if (contador == 1) {
-                            out.print("<script>alert('El Proyecto fue registrado correctamente');</script>");
+                            out.print("<script>alert('La Sección fue registrada correctamente');</script>");
                         }
                         
                         db.commit();
                         db.desconectar();
+
                     } catch (Exception e) {
 
                         e.printStackTrace();
-                        out.print("<script>alert('El Proyecto NO FUE añadido"
+                        out.print("<script>alert('La sección NO FUE añadida"
                                 + "...Inténtelo de nuevo');</script>");
                     }
                 }
             %>
-
 
     </body>
 </html>
