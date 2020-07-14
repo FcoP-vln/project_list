@@ -44,7 +44,7 @@
                         session.setAttribute("s_pass", request.getParameter("ti_contrasenia1"));
 
                         //llamar jsp correspondiente desde linea de comando
-                        request.getRequestDispatcher("inicio2.jsp?ti_nombre=" + request.getParameter("ti_nombre") + "&secciones=Secciones&p_proyecto=BIENVENIDO  " + request.getParameter("ti_nombre") + "!!!").forward(request, response);
+                            request.getRequestDispatcher("inicio2.jsp?ti_nombre=" + request.getParameter("ti_nombre") + "&secciones=Secciones&p_proyecto=WELCOME!!!").forward(request, response);
                     } else {
                         out.print("<script>alert('El Usuario NO EXISTE, o contraseña ERRÓNEA"
                                 + "...Inténtelo de nuevo');</script>");
