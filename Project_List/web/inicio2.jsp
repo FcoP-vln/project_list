@@ -86,7 +86,7 @@
 
                             %>
 
-                            <li><a href="inicio2.jsp?p_proyecto=<%=proyecto%>&idproyecto=<%=id%>&p_color=<%=color%>&secciones=" style="color:<%=color%>;">&#9775;<span> <%=proyecto%></span></a></li>
+                            <li><a href="inicio2.jsp?p_proyecto=<%=proyecto%>&idproyecto=<%=id%>&p_color=<%=color%>&secciones=" style="color:<%=color%>;">&#9775;<span> <%=proyecto%></span><span><button type="button" data-toggle="modal" data-target="#myModalGP" id="btnGestionP" name="btnGestionP" value="50">&#8230;</button></span></a></li>
 
                             <%        }
                                     db.desconectar();
@@ -346,7 +346,60 @@
             </div>
         </div>
 
-        <!-- ************************************************************ADMINISTRAR *************-->            
+        <!-- ************************************************************ ADMINISTRAR **********************-->            
+        
+        <!-- Gestionar PROYECTOOOOOS -->
+                <div class="modal" id="myModalGP">
+                    <div class=" modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header border-dark" > 
+                                <h4 class="modal-title" style="color: #f1f1f1;">Gestionar Proyecto</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <form name="añadir" action="#" method="GET"> 
+                                <!-- Modal body -->
+                                 <% if(request.getParameter("p_proyecto")!=null){
+                                            
+                                        %> 
+                                <div class="modal-body">
+                                    <p>Nombre del proyecto: </p><input type="text" name="p_proyecto" id="n_proyectoG" value='<%=request.getParameter("p_proyecto")%>' required>
+                                    <br><br>
+                                    <p>Color del proyecto</p>
+                                    <select name="color" class="color_pro">
+                                        <option value="#818181">Select a new color</option>
+                                        <option style="color:#0071c5;" value="#0071c5">&#10687; Dark Blue</option>
+                                        <option style="color:#40E0D0;" value="#40E0D0">&#10687; Turquoise</option> 
+                                        <option style="color:#008000;" value="#008000">&#10687; Green</option> 
+                                        <option style="color:#FFD700;" value="#FFD700">&#10687; Yellow</option> 
+                                        <option style="color:#FF8C00;" value="#FF8C00">&#10687; Orange</option> 
+                                        <option style="color:#FF0000;" value="#FF0000">&#10687; Red</option>                                   
+                                    </select>
+
+                                    <br><br>
+
+                                </div>
+                              
+                                <!-- Modal footer -->
+                                <div class="modal-footer border-dark">
+                                    <input type="hidden" name="ti_idproyecto" value="<%=request.getParameter("idproyecto")%>">
+                                    <button type="submit" name="btn_modificarP" value="" id="btn_modificarP" class="btn btn-danger">Modificar Proyecto</button>
+                                    <button type="submit" name="btn_eliminarP" value="" id="btn_eliminarP" class="btn btn-danger">Eliminar</button>
+                                    <button type="button" class="btn border-dark" style="color: #818181; background-color: rgba(0,0,0,.3);" data-dismiss="modal">Cancelar</button>
+                                   
+                                 <%
+                                            }else{
+                                    %>
+                                    <label>DEBE seleccionar Proyecto del menú lateral*</label>
+                              <%}
+                                 %>
+                                </div>
+                            </form>
+                        </div>    
+                    </div>
+                </div>
+                                
         <!-- GESTIONAR SECCIONEEEESS *************-->
 
         <div class="modal" id="myModalGS">
@@ -574,6 +627,61 @@
             }
         %>
 
+                       <!-- MODIFY PROYECTOOO -->
+          
+    <%
+            if (request.getParameter("btn_modificarP") != null) {
+           
+                try {
+                    Dba db = new Dba();
+                    db.Conectar();
+                    int contador = db.query.executeUpdate("UPDATE tblproyecto SET nombrepro='" + request.getParameter("p_proyecto") + "', color='" + request.getParameter("color") + "' WHERE idproyecto='" + request.getParameter("ti_idproyecto") + "' ");
+                                                                                                                                                                                                                        
+                    if (contador >= 1) {
+                        out.print("<script>alert('Successfully modify');</script>");
+                    }
+                     
+                    db.commit();
+                    db.desconectar();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    out.print("<script>alert('Something was wrong');</script>");
+                }
+                
+                %>   <script>
+            window.location.href = 'inicio2.jsp';
+        </script>
+        <%
+            }
+        %>
+       
+        
+        <!-- *****ELIMINAR Proyecto ******** -->
+<%
+            if (request.getParameter("btn_eliminarP") != null) {
+               
+                try {
+                    Dba db = new Dba();
+                    db.Conectar();
+              
+                    db.query.executeUpdate("delete from tblseccion s WHERE s.idproyecto='" + request.getParameter("ti_idproyecto") + "' ");
+                   
+                    int contador = db.query.executeUpdate("delete from tblproyecto WHERE idproyecto='" + request.getParameter("ti_idproyecto") + "' ");
+
+                    if (contador >= 1) {
+                      
+                        out.print("<script>alert(' "+ request.getParameter("p_proyecto")  +" project WAS DELETED correctly!!!');</script>");
+                    }
+                    db.commit();
+                    db.desconectar();
+                } catch (Exception e) {
+                    e.printStackTrace();   out.print(e);
+                }
+            }
+        %>
+        
+        
+        
         <!-- *****ELIMINAR SECCIONES ******** -->
         <%
             if (request.getParameter("btn_eliminarS") != null) {
