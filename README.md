@@ -10,7 +10,9 @@ _A web application to save your projects._
 
 ## 🛠️
 * JSP
+* dataTree JS
 * Oracle Database 11g EX
+* FrontEnd (pending).
 
 ### ⌨️
 * Login screen
