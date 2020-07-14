@@ -13,7 +13,7 @@ and open the template in the editor.
             }
 
             body {
-                background: rgba(0,0,0,.9);
+                background: rgba(0,0,0,.9) repeat center url(../img/bg_gris.jpeg);
                 margin: 0;
                 
             }
@@ -114,10 +114,6 @@ and open the template in the editor.
                 
             }
          
-            .column.middle img{                
-             margin-left: 300px;
-
-            }
           
            /* Clear floats after the columns */
             .row:after {
