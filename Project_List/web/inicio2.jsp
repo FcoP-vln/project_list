@@ -414,7 +414,7 @@
                     <form name="añadirS" action="inicio2.jsp" method="GET"> 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            <input type="text" name="secciones" id="n_seccion" placeholder="Agrega una sección" value="<%=request.getParameter("secciones")%>" required>
+                            <input type="text" name="secciones" id="n_seccion" placeholder="Agrega una sección" value="<%=request.getParameter("secciones")%>" required readonly="readonly">
                         </div>
                         <!-- Modal footer -->
                         <div class="modal-footer border-dark" style="align-content: center;">
